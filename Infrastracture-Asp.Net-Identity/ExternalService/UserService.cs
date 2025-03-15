@@ -22,12 +22,8 @@ namespace Infrastracture_Asp.Net_Identity.ExternalService
             var exetinguser =await _userRepository.GetByPhoneNumberAsync(request.PhoneNumber);
             if(exetinguser == true)
             {
-                return new Result
-                {
-                    Message = "user already",
-                    Success=false
-                };
-
+               ///todo fro login
+                await _otpService.GenerateOtpAsync(newUser.PhoneNumber,newUser.Id);
             }
             var newUser = new ApplicationUser
             {
